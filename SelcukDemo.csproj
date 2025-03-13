@@ -26,9 +26,13 @@
       <_ContentIncludedByDefault Remove="Pages\Student\Certificate.cshtml" />
       <_ContentIncludedByDefault Remove="Pages\Student\Courses.cshtml" />
       <_ContentIncludedByDefault Remove="Pages\Student\Exams.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Shared\Components\Menu\Default.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
+      <AdditionalFiles Include="Areas\Admin\Views\Admin\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Admin\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Admin\Index.cshtml" />
       <AdditionalFiles Include="Views\Account\AccessDenied.cshtml" />
       <AdditionalFiles Include="Views\Account\SignIn.cshtml" />
       <AdditionalFiles Include="Views\Account\SignUp.cshtml" />

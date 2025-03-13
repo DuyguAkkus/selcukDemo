@@ -16,11 +16,11 @@ namespace SelcukDemo.Controllers
         private readonly ClaimsService _claimsService;
         private readonly ILogger<AccountController> _logger;
 
-        public AccountController(UserManager<IdentityUser> userManager, 
-                                 SignInManager<IdentityUser> signInManager, 
-                                 RoleManager<IdentityRole> roleManager, 
-                                 ClaimsService claimsService, 
-                                 ILogger<AccountController> logger)
+        public AccountController(UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager,
+            RoleManager<IdentityRole> roleManager,
+            ClaimsService claimsService,
+            ILogger<AccountController> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -54,87 +54,82 @@ namespace SelcukDemo.Controllers
                 var roles = await _userManager.GetRolesAsync(user);
                 return Json(new { role = roles.Count > 0 ? roles[0] : "None" });
             }
+
             return Json(new { role = "Guest" });
         }
 
-        // 📌 Kullanıcı Girişi (POST)
-        [HttpPost]
-        public async Task<IActionResult> SignIn(SignInViewModel_ model)
-        {
-            if (!ModelState.IsValid)
+   // 📌 Kullanıcı Girişi (POST)
+[HttpPost]
+public async Task<IActionResult> SignIn(SignInViewModel_ model)
+{
+    if (!ModelState.IsValid)
+    {
+        _logger.LogWarning("Giriş başarısız: Model geçersiz.");
+        return View(model);
+    }
+
+    var user = await _userManager.FindByEmailAsync(model.Email);
+    if (user == null)
+    {
+        _logger.LogWarning("Giriş başarısız: Kullanıcı bulunamadı ({Email})", model.Email);
+        ModelState.AddModelError(string.Empty, "Email veya şifre yanlış.");
+        return View(model);
+    }
+
+    await _signInManager.SignOutAsync();
+    await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+    var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, true);
+    if (!result.Succeeded)
+    {
+        _logger.LogWarning("Giriş başarısız: {Email}", model.Email);
+        ModelState.AddModelError(string.Empty, "Email veya şifre yanlış.");
+        return View(model);
+    }
+
+    // ✅ Kullanıcının menü claim'lerini güncelle
+    await _claimsService.UpdateUserClaims(user);
+
+    // 📌 Kullanıcının Yetkilerini ve Rolleri Yükle
+    var claims = await _claimsService.GetUserClaims(user);
+    var userRoles = await _userManager.GetRolesAsync(user);
+
+    foreach (var role in userRoles)
+    {
+        claims.Add(new Claim(ClaimTypes.Role, role));
+    }
+
+    if (claims.Any())
+    {
+        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+
+        await HttpContext.SignInAsync(
+            CookieAuthenticationDefaults.AuthenticationScheme,
+            claimsPrincipal,
+            new AuthenticationProperties
             {
-                _logger.LogWarning("Giriş başarısız: Model geçersiz.");
-                return View(model);
-            }
+                IsPersistent = model.RememberMe,
+                ExpiresUtc = DateTime.UtcNow.AddHours(1)
+            });
 
-            var user = await _userManager.FindByEmailAsync(model.Email);
-            if (user == null)
-            {
-                _logger.LogWarning("Giriş başarısız: Kullanıcı bulunamadı ({Email})", model.Email);
-                ModelState.AddModelError(string.Empty, "Email veya şifre yanlış.");
-                return View(model);
-            }
+        _logger.LogInformation("Giriş başarılı: {Email}", user.Email);
+    }
+    else
+    {
+        _logger.LogError("Kullanıcı için herhangi bir menü veya rol claimi bulunamadı: {Email}", user.Email);
+    }
 
-            // 🔥 Önce eski oturumu temizleyelim
-            await _signInManager.SignOutAsync();
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+    return RedirectToAction("Index", "Home"); 
+}
 
-            var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, true);
-            if (!result.Succeeded)
-            {
-                if (result.IsLockedOut)
-                {
-                    _logger.LogWarning("Kullanıcı kilitlendi: {Email}", model.Email);
-                    ModelState.AddModelError(string.Empty, "Çok fazla başarısız giriş yaptınız, bir süre bekleyin.");
-                }
-                else
-                {
-                    _logger.LogWarning("Giriş başarısız: Şifre yanlış ({Email})", model.Email);
-                    ModelState.AddModelError(string.Empty, "Email veya şifre yanlış.");
-                }
-                return View(model);
-            }
-
-            // 📌 Kullanıcının Yetkilerini ve Rolleri Yükle
-            var claims = await _claimsService.GetUserClaims(user);
-            var userRoles = await _userManager.GetRolesAsync(user);
-
-            foreach (var role in userRoles)
-            {
-                claims.Add(new Claim(ClaimTypes.Role, role));  
-            }
-
-            if (claims.Any())
-            {
-                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-
-                // 🔥 Yeni claim'lerle oturumu başlat
-                await HttpContext.SignInAsync(
-                    CookieAuthenticationDefaults.AuthenticationScheme,
-                    claimsPrincipal,
-                    new AuthenticationProperties
-                    {
-                        IsPersistent = model.RememberMe,
-                        ExpiresUtc = DateTime.UtcNow.AddHours(1)
-                    });
-
-                _logger.LogInformation("Giriş başarılı: {Email}", user.Email);
-            }
-            else
-            {
-                _logger.LogError("Kullanıcı için herhangi bir menü veya rol claimi bulunamadı: {Email}", user.Email);
-            }
-
-            return RedirectToAction("Index", "Home"); // 📌 Giriş başarılıysa Anasayfa'ya yönlendir
-        }
 
         // 📌 Kullanıcı Çıkışı (Logout)
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
-            await _signInManager.SignOutAsync(); 
-            await HttpContext.SignOutAsync(); 
+            await _signInManager.SignOutAsync();
+            await HttpContext.SignOutAsync();
             return RedirectToAction("SignIn", "Account");
         }
 
@@ -224,6 +219,19 @@ namespace SelcukDemo.Controllers
             }
 
             return View("SignUp", model);
+        }
+
+        [HttpGet]
+        public IActionResult DebugClaims()
+        {
+            var userClaims = User.Claims.Select(c => new { c.Type, c.Value }).ToList();
+
+            foreach (var claim in User.Claims)
+            {
+                Console.WriteLine($"DebugClaims -> Type: {claim.Type}, Value: {claim.Value}");
+            }
+
+            return Json(userClaims);
         }
     }
 }

@@ -71,9 +71,6 @@ namespace SelcukDemo.Controllers
         {
             return View(); // Burada ilerleyen süreçte öğrenci işlemleri olacak
         }
-       
-      
-
-
+        
     }
 }

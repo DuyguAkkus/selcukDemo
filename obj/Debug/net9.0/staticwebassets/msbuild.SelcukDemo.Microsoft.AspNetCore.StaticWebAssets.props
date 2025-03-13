@@ -1134,23 +1134,23 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\jquery\LICENSE.txt'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\SelcukDemo.gh5fv0x3xq.bundle.scp.css'))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\SelcukDemo.q2hdovmfgd.bundle.scp.css'))">
       <SourceType>Package</SourceType>
       <SourceId>SelcukDemo</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/SelcukDemo</BasePath>
-      <RelativePath>SelcukDemo.gh5fv0x3xq.bundle.scp.css</RelativePath>
+      <RelativePath>SelcukDemo.q2hdovmfgd.bundle.scp.css</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>Reference</AssetMode>
       <AssetRole>Primary</AssetRole>
       <RelatedAsset></RelatedAsset>
       <AssetTraitName>ScopedCss</AssetTraitName>
       <AssetTraitValue>ProjectBundle</AssetTraitValue>
-      <Fingerprint>gh5fv0x3xq</Fingerprint>
-      <Integrity>hBgaU8BBHI8iLGW0X+NHBYaURdl5pu76Jn73kx8THt4=</Integrity>
+      <Fingerprint>q2hdovmfgd</Fingerprint>
+      <Integrity>sqtfiPARRVoLSBXahc69++DjH0O+NAYMmKmznd1GIHc=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\SelcukDemo.gh5fv0x3xq.bundle.scp.css'))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\SelcukDemo.q2hdovmfgd.bundle.scp.css'))</OriginalItemSpec>
     </StaticWebAsset>
   </ItemGroup>
 </Project>

@@ -112,6 +112,29 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<script>
+    $(document).ready(function () {
+        $.get("/Account/GetUserRole", function (data) {
+            console.log("Kullanıcı rolü:", data.role); // Tarayıcı konsoluna yazdır
+
+            let navLinks = $("#nav-links");
+
+            if (data.role === "Student") {
+                navLinks.html(`
+                    <li class="nav-item"><a class="nav-link" href="/Student/Courses">Kurslarım</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Student/Exams">Sınavlarım</a></li>
+                `);
+            } else if (data.role === "Teacher") {
+                navLinks.html(`
+                    <li class="nav-item"><a class="nav-link" href="/Teacher/Classes">Derslerim</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Teacher/Students">Öğrencilerim</a></li>
+                `);
+            }
+        }).fail(function () {
+            console.log("Hata: Kullanıcı rolü alınamadı.");
+        });
+    });
+</script>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

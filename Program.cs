@@ -60,7 +60,7 @@ builder.Services.AddSingleton<IFileProvider>(
 
 // 📌 8️⃣ **MVC Servisini ve View Desteğini Ekle**
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddScoped<ClaimsService>();
 var app = builder.Build();
 
 // 📌 9️⃣ **Admin Kullanıcısını Otomatik Ekle (Hatasız Yapılandırıldı)**
@@ -141,4 +141,16 @@ app.MapControllerRoute(
     name: "areas",
     pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
 
+/*using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<SelcukDbContext>();
+
+    await context.Database.MigrateAsync();
+
+    await MenuSeeder.SeedMenus(context);
+    await RoleMenusSeeder.SeedRoleMenus(context);
+}
+
+*/
 app.Run();

@@ -42,5 +42,18 @@ namespace SelcukDemo.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        [HttpGet]
+        public IActionResult GetUserMenus()
+        {
+            var menuClaims = User.Claims
+                .Where(c => c.Type == "Menu")
+                .Select(c => c.Value)
+                .ToList();
+
+            _logger.LogInformation("Kullanıcı Menüsü: {@MenuClaims}", menuClaims);
+
+            return Json(menuClaims);
+        }
+
     }
 }
