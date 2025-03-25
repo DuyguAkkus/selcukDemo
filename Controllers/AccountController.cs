@@ -233,5 +233,14 @@ public async Task<IActionResult> SignIn(SignInViewModel_ model)
 
             return Json(userClaims);
         }
+
+        public IActionResult Settings()
+        {
+            return View();
+        }
+        public IActionResult Profile()
+        {
+            return View();
+        }
     }
 }

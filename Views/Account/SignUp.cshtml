@@ -1,145 +1,55 @@
 @model SelcukDemo.ViewModels.SignUpViewModel
-@if (!ViewData.ModelState.IsValid)
-{
-    <div class="alert alert-danger">
-        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-        {
-            <p>@error.ErrorMessage</p>
-        }
-    </div>
+@{
+    ViewData["Title"] = "Kayıt Ol";
+    Layout = null; // Sayfa layout kullanmasın
 }
 
-<div class="register-container">
-    <div class="register-header">
-        <h2 class="text-center">Kayıt Ol</h2>
-    </div>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kayıt Ol - CoreUI</title>
 
-    <!-- Butonlar -->
-    <div class="text-center">
-        <button id="studentBtn" class="btn btn-primary btn-lg">Öğrenci Kaydı</button>
-        <button id="teacherBtn" class="btn btn-success btn-lg">Öğretmen Kaydı</button>
-    </div>
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+<body class="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
 
-    <br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mb-4 mx-4">
+                <div class="card-body p-4">
+                    <h1>Kayıt Ol</h1>
+                    <p class="text-body-secondary">Hesabınızı oluşturun</p>
+                    
+                    <!-- Butonlar -->
+                    <div class="text-center mb-4">
+                        <button id="studentBtn" class="btn btn-primary btn-lg me-2">Öğrenci Kaydı</button>
+                        <button id="teacherBtn" class="btn btn-success btn-lg">Öğretmen Kaydı</button>
+                    </div>
 
-    <!-- Öğrenci Formu -->
-    <div id="studentForm" style="display: none;">
-        <h3>Öğrenci Kaydı</h3>
-        <form asp-action="RegisterStudent" method="post">
-            <input asp-for="UserName" class="form-control" placeholder="Kullanıcı Adı" />
-            <input asp-for="Email" class="form-control" placeholder="Email" />
-            <input asp-for="Phone" class="form-control" placeholder="Telefon" />
-            <input asp-for="Password" type="password" class="form-control" placeholder="Şifre" />
-            <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Şifre Tekrar" />
-            <button type="submit" class="btn btn-primary">Kayıt Ol</button>
-        </form>
-    </div>
+                    <!-- Öğrenci Kaydı Formu -->
+                    <div id="studentForm" style="display:none;">
+                        <form asp-action="RegisterStudent" method="post">
+                            @Html.Partial("_RegisterForm", Model)
+                            <button type="submit" class="btn btn-primary w-100">Kayıt Ol (Öğrenci)</button>
+                        </form>
+                    </div>
 
-    <!-- Öğretmen Formu -->
-    <div id="teacherForm" style="display: none;">
-        <h3>Öğretmen Kaydı</h3>
-        <form asp-action="RegisterTeacher" method="post">
-            <input asp-for="UserName" class="form-control" placeholder="Kullanıcı Adı" />
-            <input asp-for="Email" class="form-control" placeholder="Email" />
-            <input asp-for="Phone" class="form-control" placeholder="Telefon" />
-            <input asp-for="Password" type="password" class="form-control" placeholder="Şifre" />
-            <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Şifre Tekrar" />
-            <button type="submit" class="btn btn-secondary">Kayıt Ol</button>
-        </form>
+                    <!-- Öğretmen Kaydı Formu -->
+                    <div id="teacherForm" style="display:none;">
+                        <form asp-action="RegisterTeacher" method="post">
+                            @Html.Partial("_RegisterForm", Model)
+                            <button type="submit" class="btn btn-success w-100">Kayıt Ol (Öğretmen)</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
-<style>
-    /* Kayıt Ol kutusunu ortala ve başlığı içine al */
-    .register-container {
-        max-width: 500px;
-        margin: 50px auto;
-        padding: 20px;
-        border-radius: 12px;
-        background: transparent; /* Şeffaf iç kısım */
-        border: 2px solid #BE5985; /* Pembe çerçeve */
-        box-shadow: 0px 0px 15px rgba(190, 89, 133, 0.5); /* Hafif pembe ışıltı */
-        text-align: center;
-        position: relative;
-        padding-top: 50px;
-    }
-
-    /* Başlık kısmı kutunun içine girecek ve yukarıda görünecek */
-    .register-header {
-        position: absolute;
-        top: -25px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: white;
-        padding: 5px 20px;
-        border-radius: 10px;
-        font-size: 22px;
-        font-weight: bold;
-        border: 2px solid #BE5985;
-        box-shadow: 0px 0px 10px rgba(190, 89, 133, 0.2);
-    }
-
-    /* Butonları düzenle */
-    .btn-container {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        margin-top: 20px;
-    }
-
-    .btn-lg {
-        width: 180px;
-        padding: 12px;
-        font-size: 18px;
-        font-weight: bold;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-    }
-
-    .btn-primary {
-        background-color: #BE5985;
-        border-color: #BE5985;
-        box-shadow: 0px 0px 10px rgba(190, 89, 133, 0.5);
-    }
-
-    .btn-primary:hover {
-        background-color: #ff69b4;
-        box-shadow: 0px 0px 15px rgba(255, 105, 180, 0.7);
-    }
-
-    .btn-success {
-        background-color: #ff69b4;
-        border-color: #ff69b4;
-        box-shadow: 0px 0px 10px rgba(255, 105, 180, 0.5);
-    }
-
-    .btn-success:hover {
-        background-color: #BE5985;
-        box-shadow: 0px 0px 15px rgba(190, 89, 133, 0.7);
-    }
-
-    /* Kayıt formunun iç kısmı */
-    .register-form {
-        margin-top: 20px;
-        padding: 15px;
-        border-radius: 8px;
-        background: #ffffff;
-        box-shadow: 0px 0px 10px rgba(190, 89, 133, 0.3);
-    }
-
-    .form-control {
-        margin-bottom: 10px;
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #BE5985;
-        border-radius: 6px;
-    }
-
-    .form-control:focus {
-        box-shadow: 0px 0px 10px rgba(255, 105, 180, 0.8);
-        border-color: #ff69b4;
-    }
-</style>
 
 <script>
     document.getElementById("studentBtn").addEventListener("click", function () {
@@ -152,3 +62,7 @@
         document.getElementById("studentForm").style.display = "none";
     });
 </script>
+
+<script src="~/js/coreui.bundle.min.js"></script>
+</body>
+</html>

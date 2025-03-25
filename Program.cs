@@ -121,14 +121,21 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+// ✅ Statik dosyaların düzgün sunulabilmesi için
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")
+    ),
+    RequestPath = ""
+});
+
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapStaticAssets();
 
 // 📌 1️⃣1️⃣ **Varsayılan Route Yapısı**
 app.MapControllerRoute(
@@ -139,7 +146,7 @@ app.MapControllerRoute(
 // 📌 1️⃣2️⃣ **Admin Paneli için Area Desteği**
 app.MapControllerRoute(
     name: "areas",
-    pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
+    pattern: "{area:exists}/{controller=User}/{action=Index}/{id?}");
 
 /*using (var scope = app.Services.CreateScope())
 {

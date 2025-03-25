@@ -1,0 +1,30 @@
+
+<h2>Üye Listesi</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Kullanıcı Adı</th>
+        <th>Email</th>
+        <th>Roller</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Id</td>
+            <td>@user.UserName</td>
+            <td>@user.Email</td>
+            <td>
+                @foreach (var role in user.Roles)
+                {
+                    <span class="badge bg-secondary">@role</span>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+

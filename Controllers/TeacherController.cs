@@ -71,6 +71,10 @@ namespace SelcukDemo.Controllers
         {
             return View(); // Burada ilerleyen süreçte öğrenci işlemleri olacak
         }
+        public IActionResult MyClasses()
+        {
+            return View(); // Burada ilerleyen süreçte öğrenci işlemleri olacak
+        }
         
     }
 }

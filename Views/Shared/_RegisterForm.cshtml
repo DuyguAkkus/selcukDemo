@@ -1,6 +1,41 @@
-namespace SelcukDemo.Views.Shared;
+@model SelcukDemo.ViewModels.SignUpViewModel
 
-public class _RegisterForm_cshtml
-{
-    
-}
+<div class="input-group mb-3">
+    <span class="input-group-text">
+        <svg class="icon"><use xlink:href="@Url.Content("~/assets/icons/sprites/free.svg#cil-user")"></use></svg>
+    </span>
+    <input asp-for="UserName" class="form-control" placeholder="Kullanıcı Adı" />
+    <span asp-validation-for="UserName" class="text-danger"></span>
+</div>
+
+<div class="input-group mb-3">
+    <span class="input-group-text">
+        <svg class="icon"><use xlink:href="@Url.Content("~/assets/icons/sprites/free.svg#cil-envelope-open")"></use></svg>
+    </span>
+    <input asp-for="Email" class="form-control" placeholder="Email" />
+    <span asp-validation-for="Email" class="text-danger"></span>
+</div>
+
+<div class="input-group mb-3">
+    <span class="input-group-text">
+        <svg class="icon"><use xlink:href="@Url.Content("~/assets/icons/sprites/free.svg#cil-phone")"></use></svg>
+    </span>
+    <input asp-for="Phone" class="form-control" placeholder="Telefon" />
+    <span asp-validation-for="Phone" class="text-danger"></span>
+</div>
+
+<div class="input-group mb-3">
+    <span class="input-group-text">
+        <svg class="icon"><use xlink:href="@Url.Content("~/assets/icons/sprites/free.svg#cil-lock-locked")"></use></svg>
+    </span>
+    <input asp-for="Password" type="password" class="form-control" placeholder="Şifre" />
+    <span asp-validation-for="Password" class="text-danger"></span>
+</div>
+
+<div class="input-group mb-4">
+    <span class="input-group-text">
+        <svg class="icon"><use xlink:href="@Url.Content("~/assets/icons/sprites/free.svg#cil-lock-locked")"></use></svg>
+    </span>
+    <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Şifre Tekrar" />
+    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+</div>

@@ -1,31 +1,37 @@
 ﻿@model MenuProject.Components.MenuViewModel
 
 <nav class="sidebar bg-dark text-white p-3 vh-100" style="width: 250px;" id="sidebar-menu">
-    <h4 class="text-center">Menü</h4>
+
     <ul class="nav flex-column">
         @foreach (var menu in Model.MainMenus)
         {
             var subMenuItems = Model.SubMenus.Where(sm => sm.ParentId == menu.Id).ToList();
             var url = menu.ControllerName == "Admin"
-            ? Url.Action(menu.ActionName, menu.ControllerName, new { area = "Admin" })
-            : Url.Action(menu.ActionName, menu.ControllerName);
+                ? Url.Action(menu.ActionName, menu.ControllerName, new { area = "Admin" })
+                : Url.Action(menu.ActionName, menu.ControllerName);
 
-            if (subMenuItems.Any()) // Alt menü varsa dropdown yap
+            if (subMenuItems.Any()) // Alt menü varsa dropdown
             {
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="menu-@menu.Id" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="@menu.Icon"></i> @menu.Name
+                    <a class="nav-link dropdown-toggle text-white d-flex align-items-center" href="#" id="menu-@menu.Id" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <svg class="icon me-2">
+                            <use xlink:href="@Url.Content($"~/assets/icons/sprites/free.svg#{menu.Icon}")"></use>
+                        </svg>
+                        @menu.Name
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="menu-@menu.Id">
                         @foreach (var subMenu in subMenuItems)
                         {
                             var subUrl = subMenu.ControllerName == "Admin"
-                            ? Url.Action(subMenu.ActionName, subMenu.ControllerName, new { area = "Admin" })
-                            : Url.Action(subMenu.ActionName, subMenu.ControllerName);
+                                ? Url.Action(subMenu.ActionName, subMenu.ControllerName, new { area = "Admin" })
+                                : Url.Action(subMenu.ActionName, subMenu.ControllerName);
 
                             <li>
-                                <a class="dropdown-item" href="@subUrl">
-                                    <i class="@subMenu.Icon"></i> @subMenu.Name
+                                <a class="dropdown-item d-flex align-items-center" href="@subUrl">
+                                    <svg class="icon me-2">
+                                        <use xlink:href="@Url.Content($"~/assets/icons/sprites/free.svg#{subMenu.Icon}")"></use>
+                                    </svg>
+                                    @subMenu.Name
                                 </a>
                             </li>
                         }
@@ -35,18 +41,14 @@
             else // Alt menü yoksa
             {
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="@url">
-                        <i class="@menu.Icon"></i> @menu.Name
+                    <a class="nav-link text-white d-flex align-items-center" href="@url">
+                        <svg class="icon me-2">
+                            <use xlink:href="@Url.Content($"~/assets/icons/sprites/free.svg#{menu.Icon}")"></use>
+                        </svg>
+                        @menu.Name
                     </a>
                 </li>
             }
         }
     </ul>
-
-    <!--  Çıkış Yap Butonu -->
-    <form asp-controller="Account" asp-action="Logout" asp-area="" method="post">
-        <button type="submit" class="btn btn-danger w-100">
-            <i class="fas fa-sign-out-alt"></i> Çıkış Yap
-        </button>
-    </form>
 </nav>

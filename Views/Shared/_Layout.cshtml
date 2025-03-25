@@ -14,110 +14,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SelcukSemDemo</title>
 
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/MenuProject.styles.css" asp-append-version="true" />
+    <!-- CoreUI CSS -->
+    <link rel="stylesheet" href="~/css/coreui.min.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/vendors/simplebar.css" />
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SelcukDemo</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Menüyü Aç/Kapat">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto" id="nav-links">
-                    @if (User.Identity!.IsAuthenticated)
-                    {
-                        var currentUser = await UserManager.GetUserAsync(User);
-                        <li class="nav-item">
-                            <span class="nav-link">Hoş geldin, @(currentUser?.UserName ?? "Misafir")!</span>
-                        </li>
-                        <li class="nav-item">
-                            <form asp-controller="Account" asp-action="Logout" method="post">
-                                <button type="submit" class="btn btn-outline-danger">Çıkış Yap</button>
-                            </form>
-                        </li>
-                    }
-                    else
-                    {
-                        <li class="nav-item">
-                            <a class="btn btn-outline-primary me-2" asp-controller="Account" asp-action="SignIn">Giriş Yap</a>
-                            <a class="btn btn-outline-success" asp-controller="Account" asp-action="SignUp">Kayıt Ol</a>
-                        </li>
-                    }
-                </ul>
-            </div>
+@if (User.Identity!.IsAuthenticated)
+{
+    <div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
+        <div class="sidebar-header border-bottom">
+            <div class="sidebar-brand">Selçuk Admin</div>
         </div>
-    </nav>
-</header>
-
-<div class="d-flex">
-    @if (User.Identity!.IsAuthenticated)
-    {
-        @await Component.InvokeAsync("Menu")
-    }
-
-    <!--  Ana İçerik -->
-    <div class="container-fluid p-4">
-        <main role="main">
-            @RenderBody()
-        </main>
+        <ul class="sidebar-nav" data-coreui="navigation" data-simplebar>
+            @await Component.InvokeAsync("Menu")
+        </ul>
+        <div class="sidebar-footer border-top d-none d-md-flex">
+            <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
+        </div>
     </div>
+}
+
+<div class="wrapper d-flex flex-column min-vh-100"> 
+    <!-- ✅ CoreUI Header (Partial View ile) -->
+    @if (User.Identity != null && User.Identity.IsAuthenticated)
+    {
+        @await Html.PartialAsync("_CoreHeader")
+    }
+    else
+    {
+        <!-- Giriş yapılmamışsa sağ üstte login & signup butonları -->
+        <header class="header border-bottom" style="padding: 0.5rem 1rem; background-color: #fff;">
+            <div class="container-fluid d-flex justify-content-end align-items-center" style="height: 56px;">
+                <a class="btn btn-sm btn-outline-primary me-2" asp-controller="Account" asp-action="SignIn">Giriş Yap</a>
+                <a class="btn btn-sm btn-outline-success" asp-controller="Account" asp-action="SignUp">Kayıt Ol</a>
+            </div>
+        </header>
+
+    }
+    <!-- Ana İçerik -->
+    <div class="body flex-grow-1">
+        <div class="container-lg px-4">
+            <main role="main">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <footer class="footer px-4">
+        <div><a href="https://coreui.io">CoreUI</a> &copy; 2025 creativeLabs.</div>
+        <div class="ms-auto">Powered by <a href="https://coreui.io/docs/">CoreUI UI Components</a></div>
+    </footer>
 </div>
 
-<footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; 2025 - MenuProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Gizlilik Politikası</a>
-    </div>
-</footer>
-
-<style>
-    /* Navbar'ı sabit üstte tut */
-    .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1000;
-        background: white; /* ✨ Saydam efekt kaldırıldı */
-        box-shadow: none; /* ✨ Gölge efekti kaldırıldı */
-        padding: 10px 20px;
-    }
-
-    /* Sayfa içeriğinin navbar altında kalmaması için üst boşluk ekleyelim */
-    body {
-        padding-top: 70px;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
-
-    /* Sayfa içeriği */
-    .container-fluid {
-        flex: 1; /* 📌 Sayfanın geri kalanını doldur */
-    }
-
-    /* 📌 Footer'ı sayfanın en altına sabitle */
-    footer {
-        margin-top: auto;
-        background: #f8f9fa;
-        padding: 10px 0;
-        text-align: center;
-    }
-</style>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
+<!-- JS -->
+<script src="~/js/coreui.bundle.min.js"></script>
+<script src="~/js/simplebar.min.js"></script>
+<script src="~/js/chart.umd.js"></script>
+<script src="~/js/coreui-chartjs.js"></script>
+<script src="~/js/index.js"></script>
+<script src="~/js/main.js"></script>
 
 @await RenderSectionAsync("Scripts", required: false)
-
 </body>
 </html>

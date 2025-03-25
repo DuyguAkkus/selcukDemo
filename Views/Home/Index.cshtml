@@ -8,11 +8,10 @@
 </div>
 
 <style>
-    /* Pembe dalga animasyonlu arka plan */
     body {
-        background: linear-gradient(270deg, #ff69b4, #ff85c2, #ffaad4, #ff69b4);
-        background-size: 400% 400%;
-        animation: waveBG 6s ease infinite;
+        background: linear-gradient(270deg, #5c5cd6, #6a6ae0, #7b7bf0, #5c5cd6);
+        background-size: 300% 300%;
+        animation: waveBG 14s ease-in-out infinite;
         color: white;
         font-family: 'Arial', sans-serif;
         text-align: center;
@@ -23,8 +22,7 @@
         align-items: center;
     }
 
-    /* Dalgalı arka plan animasyonu */
-   @@keyframes waveBG {
+    @@keyframes waveBG {
         0% {
             background-position: 0% 50%;
         }
@@ -36,45 +34,40 @@
         }
     }
 
-    /* Hero bölümünü ortala */
     .hero-container {
-        padding: 20px;
+        padding: 30px;
         border-radius: 15px;
-        background: rgba(255, 105, 180, 0.2); /* Hafif pembe saydam kutu */
-        box-shadow: 0px 0px 20px rgba(255, 105, 180, 0.5);
-        animation: waveBox 4s infinite ease-in-out;
+        background: rgba(92, 92, 214, 0.15); /* #5c5cd6 saydam */
+        box-shadow: 0px 0px 20px rgba(92, 92, 214, 0.4);
+        animation: waveBox 10s infinite ease-in-out;
     }
 
-    /* Dalgalı hareket efekti */
     @@keyframes waveBox {
         0% {
             transform: translateY(0px);
         }
         50% {
-            transform: translateY(10px);
+            transform: translateY(5px);
         }
         100% {
             transform: translateY(0px);
         }
     }
 
-    /* Başlık tasarımı */
     .hero-title {
         font-size: 3rem;
         font-weight: bold;
-        text-shadow: 3px 3px 6px rgba(255, 105, 180, 0.5);
+        text-shadow: 2px 2px 6px rgba(92, 92, 214, 0.5);
         animation: fadeIn 1.5s ease-in-out;
     }
 
-    /* Alt başlık tasarımı */
     .hero-subtitle {
         font-size: 1.5rem;
         margin-top: 10px;
-        opacity: 0.9;
-        animation: fadeIn 2s ease-in-out;
+        opacity: 0.95;
+        animation: fadeIn 2.2s ease-in-out;
     }
 
-    /* Fade-in animasyonu */
     @@keyframes fadeIn {
         from {
             opacity: 0;

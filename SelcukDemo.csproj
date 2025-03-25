@@ -27,12 +27,26 @@
       <_ContentIncludedByDefault Remove="Pages\Student\Courses.cshtml" />
       <_ContentIncludedByDefault Remove="Pages\Student\Exams.cshtml" />
       <_ContentIncludedByDefault Remove="Areas\Admin\Shared\Components\Menu\Default.cshtml" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\@ampproject\remapping\dist\remapping.mjs" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\@ampproject\remapping\dist\remapping.mjs.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\@ampproject\remapping\dist\remapping.umd.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\@ampproject\remapping\dist\remapping.umd.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\@ampproject\remapping\dist\types\build-source-map-tree.d.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\@ampproject\remapping\dist\types\remapping.d.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\@ampproject\remapping\dist\types\source-map-tree.d.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\@ampproject\remapping\dist\types\source-map.d.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\@ampproject\remapping\dist\types\types.d.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\@ampproject\remapping\LICENSE" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\@ampproject\remapping\package.json" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\@ampproject\remapping\README.md" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\vendors\simplebar.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\vendors\simplebar.css.map" />
     </ItemGroup>
 
     <ItemGroup>
-      <AdditionalFiles Include="Areas\Admin\Views\Admin\Create.cshtml" />
-      <AdditionalFiles Include="Areas\Admin\Views\Admin\Edit.cshtml" />
-      <AdditionalFiles Include="Areas\Admin\Views\Admin\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\User\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\User\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\User\Index.cshtml" />
       <AdditionalFiles Include="Views\Account\AccessDenied.cshtml" />
       <AdditionalFiles Include="Views\Account\SignIn.cshtml" />
       <AdditionalFiles Include="Views\Account\SignUp.cshtml" />
@@ -46,6 +60,8 @@
 
     <ItemGroup>
       <Folder Include="Migrations\" />
+      <Folder Include="wwwroot\assets\" />
+      <Folder Include="wwwroot\assets\icons\sprites\" />
     </ItemGroup>
 
 </Project>
