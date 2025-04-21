@@ -1,0 +1,89 @@
+@model List<SelcukDemo.Areas.Admin.Models.UserRoleViewModel>
+
+@{
+    ViewData["Title"] = "Üye Listesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/assets/coreui/css/coreui.min.css" />
+    <link rel="stylesheet" href="~/assets/simplebar/css/simplebar.css" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+
+</head>
+<body>
+<div class="card mb-4 shadow-sm">
+    <div class="card-header d-flex align-items-center">
+        <svg class="icon me-2">
+            <use xlink:href="@Url.Content("~/assets/icons/sprites/free.svg#cil-people")"></use>
+        </svg>
+        <strong>Üye Listesi</strong>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped table-bordered align-middle mb-0">
+                <thead class="table-light text-center">
+                <tr>
+                    <th style="min-width: 280px;" class="text-start">Kullanıcı</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>İşlem</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="avatar me-3">
+                                    <img src="@Url.Content(string.IsNullOrEmpty(user.ProfileImagePath)
+                                                  ? "~/images/profiles/default.png"
+                                                  : "~/images/profiles/" + user.ProfileImagePath)"
+                                         class="avatar-img rounded-circle"
+                                         width="48" height="48" alt="Profil">
+                                </div>
+                                <div>
+                                    <div class="fw-semibold">@user.UserName</div>
+                                    <div class="small text-muted">
+                                        Kayıt: @(user.CreatedAt?.ToString("dd MMM yyyy") ?? "Bilinmiyor")
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">@user.Email</td>
+                        <td class="text-center">
+                            @if (user.Roles != null && user.Roles.Any())
+                            {
+                                foreach (var role in user.Roles)
+                                {
+                                    <span class="badge bg-info text-white me-1">@role</span>
+                                }
+                            }
+                            else
+                            {
+                                <span class="text-muted">Yok</span>
+                            }
+                        </td>
+                        <td class="text-center">
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                                        type="button" data-coreui-toggle="dropdown">
+                                    İşlemler
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#">Düzenle</a></li>
+                                    <li><a class="dropdown-item text-danger" href="#">Sil</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="~/assets/coreui/js/coreui.bundle.min.js"></script>
+<script src="~/assets/simplebar/js/simplebar.min.js"></script>
+</body>

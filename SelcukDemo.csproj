@@ -19,6 +19,7 @@
         <PrivateAssets>all</PrivateAssets>
       </PackageReference>
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
+      <PackageReference Include="TS.Result" Version="9.0.1" />
     </ItemGroup>
 
     <ItemGroup>
@@ -41,12 +42,13 @@
       <_ContentIncludedByDefault Remove="wwwroot\css\@ampproject\remapping\README.md" />
       <_ContentIncludedByDefault Remove="wwwroot\css\vendors\simplebar.css" />
       <_ContentIncludedByDefault Remove="wwwroot\css\vendors\simplebar.css.map" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\User\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\User\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\User\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Pages\Admin\UserList.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
-      <AdditionalFiles Include="Areas\Admin\Views\User\Create.cshtml" />
-      <AdditionalFiles Include="Areas\Admin\Views\User\Edit.cshtml" />
-      <AdditionalFiles Include="Areas\Admin\Views\User\Index.cshtml" />
       <AdditionalFiles Include="Views\Account\AccessDenied.cshtml" />
       <AdditionalFiles Include="Views\Account\SignIn.cshtml" />
       <AdditionalFiles Include="Views\Account\SignUp.cshtml" />
@@ -59,9 +61,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Migrations\" />
       <Folder Include="wwwroot\assets\" />
       <Folder Include="wwwroot\assets\icons\sprites\" />
+      <Folder Include="wwwroot\images\forms\" />
+      <Folder Include="wwwroot\images\profiles\" />
     </ItemGroup>
 
 </Project>

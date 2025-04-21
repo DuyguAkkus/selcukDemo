@@ -1,11 +1,78 @@
-@model dynamic
-
 @{
-    ViewData["Title"] = "Courses";
-    Layout = "_Layout";
+    ViewBag.Title = "Derslerim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Kurslarım</h2>
-<p>
-    Şu an aktif bir kursunuz bulunmamaktadır
-</p>
+<div class="container-lg px-4">
+    <h4 class="mb-4">Tüm Dersler</h4>
+    <div class="row g-4">
+        <!-- Ders Kartı 1 -->
+        <div class="col-md-6 col-xl-4">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h5 class="card-title d-flex align-items-center">
+                            <svg class="icon me-2 text-primary">
+                                <use xlink:href="@Url.Content("~/assets/icons/sprites/free.svg#cil-code")"></use>
+                            </svg>
+                            C# ile Programlama
+                        </h5>
+                        <p class="text-body-secondary small">Temel seviyeden ileri seviyeye C# eğitimi.</p>
+                        <ul class="list-unstyled mb-3">
+                            <li><strong>Eğitmen:</strong> Ali Yılmaz</li>
+                            <li><strong>Süre:</strong> 20 saat</li>
+                            <li><strong>Fiyat:</strong> ₺299</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn btn-primary w-100 mt-auto">Derse Git</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ders Kartı 2 -->
+        <div class="col-md-6 col-xl-4">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h5 class="card-title d-flex align-items-center">
+                            <svg class="icon me-2 text-success">
+                                <use xlink:href="@Url.Content("~/assets/icons/sprites/free.svg#cil-brush")"></use>
+                            </svg>
+                            Web Tasarımı 101
+                        </h5>
+                        <p class="text-body-secondary small">HTML, CSS, Bootstrap ile modern tasarımlar.</p>
+                        <ul class="list-unstyled mb-3">
+                            <li><strong>Eğitmen:</strong> Zeynep Demir</li>
+                            <li><strong>Süre:</strong> 15 saat</li>
+                            <li><strong>Fiyat:</strong> ₺199</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn btn-success w-100 mt-auto">Derse Git</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ders Kartı 3 -->
+        <div class="col-md-6 col-xl-4">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h5 class="card-title d-flex align-items-center">
+                            <svg class="icon me-2 text-warning">
+                                <use xlink:href="@Url.Content("~/assets/icons/sprites/free.svg#cil-storage")"></use>
+                            </svg>
+                            Veritabanı ve SQL
+                        </h5>
+                        <p class="text-body-secondary small">SQL sorguları, ilişkisel veritabanları ve örnek senaryolar.</p>
+                        <ul class="list-unstyled mb-3">
+                            <li><strong>Eğitmen:</strong> Burak Kaya</li>
+                            <li><strong>Süre:</strong> 10 saat</li>
+                            <li><strong>Fiyat:</strong> Ücretsiz</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn btn-warning w-100 text-white mt-auto">Derse Git</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

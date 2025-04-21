@@ -1,8 +1,25 @@
-@model dynamic
+@model SelcukDemo.ViewModels.UserProfileViewModel
 
-@{
-    ViewBag.Title = "title";
-    Layout = "_Layout";
-}
-
-<h2>Profilim</h2>
+<div class="container mt-5">
+    <h2>Profil Bilgilerim</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            @if (!string.IsNullOrEmpty(Model.ProfileImagePath))
+            {
+                <img src="@Model.ProfileImagePath" class="img-thumbnail" alt="Profil Resmi" />
+            }
+            else
+            {
+                <p>Profil resmi yüklenmemiş.</p>
+            }
+        </div>
+        <div class="col-md-8">
+            <p><strong>Kullanıcı Adı:</strong> @Model.UserName</p>
+            <p><strong>Email:</strong> @Model.Email</p>
+            <p><strong>Doğum Tarihi:</strong> @Model.BirthDate?.ToString("dd.MM.yyyy")</p>
+            <p><strong>Cinsiyet:</strong> @Model.Gender</p>
+            <p><strong>Şehir:</strong> @Model.City</p>
+        </div>
+    </div>
+</div>

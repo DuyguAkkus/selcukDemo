@@ -17,9 +17,9 @@ public class Lesson
 
         [Required]
         public string TeacherId { get; set; } // Öğretmen ID'si
-
+        
         [ForeignKey("TeacherId")]
-        public virtual IdentityUser Teacher { get; set; } // Öğretmen bilgisi
+        public virtual AppUser Teacher { get; set; } = null!; 
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
     

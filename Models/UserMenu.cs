@@ -12,6 +12,7 @@ public class UserMenu
 
     public int? ParentId { get; set; } // Eğer alt menü ise, bağlı olduğu menünün ID'si
 
+    public string? Area { get; set; }
     public string ControllerName { get; set; } // Controller Adı
 
     public string ActionName { get; set; } // Action Adı

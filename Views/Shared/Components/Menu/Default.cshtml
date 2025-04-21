@@ -6,9 +6,7 @@
         @foreach (var menu in Model.MainMenus)
         {
             var subMenuItems = Model.SubMenus.Where(sm => sm.ParentId == menu.Id).ToList();
-            var url = menu.ControllerName == "Admin"
-                ? Url.Action(menu.ActionName, menu.ControllerName, new { area = "Admin" })
-                : Url.Action(menu.ActionName, menu.ControllerName);
+            var url = Url.Action(menu.ActionName, menu.ControllerName, string.IsNullOrEmpty(menu.Area) ? null : new { area = menu.Area });
 
             if (subMenuItems.Any()) // Alt menü varsa dropdown
             {
@@ -22,9 +20,7 @@
                     <ul class="dropdown-menu" aria-labelledby="menu-@menu.Id">
                         @foreach (var subMenu in subMenuItems)
                         {
-                            var subUrl = subMenu.ControllerName == "Admin"
-                                ? Url.Action(subMenu.ActionName, subMenu.ControllerName, new { area = "Admin" })
-                                : Url.Action(subMenu.ActionName, subMenu.ControllerName);
+                            var subUrl = Url.Action(subMenu.ActionName, subMenu.ControllerName, string.IsNullOrEmpty(subMenu.Area) ? null : new { area = subMenu.Area });
 
                             <li>
                                 <a class="dropdown-item d-flex align-items-center" href="@subUrl">

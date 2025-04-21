@@ -1,0 +1,89 @@
+@model List<SelcukDemo.Models.UploadedFile>
+
+@{
+    ViewData["Title"] = "Formlar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var selectedCategory = ViewBag.SelectedCategory as string;
+    var categories = ViewBag.Categories as SelectList;
+}
+
+<div class="card mb-4 shadow-sm">
+    <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <div class="d-flex align-items-center gap-2">
+            <svg class="icon me-2">
+                <use xlink:href="@Url.Content("~/assets/icons/sprites/free.svg#cil-folder")"></use>
+            </svg>
+            <strong>Yüklenen Formlar</strong>
+        </div>
+
+        <div class="d-flex gap-2">
+            <!-- Kategori Filtreleme -->
+            <form method="get" asp-action="Index" class="d-flex align-items-center">
+                <select name="category" class="form-select form-select-sm" onchange="this.form.submit()">
+                    <option value="" selected="@(string.IsNullOrEmpty(ViewBag.SelectedCategory as string) ? "selected" : null)">Tüm Kategoriler</option>
+
+                    @foreach (var cat in ViewBag.Categories as SelectList)
+                    {
+                        var isSelected = (cat.Text == (ViewBag.SelectedCategory as string)) ? "selected" : null;
+                        <option value="@cat.Text" selected="@isSelected">@cat.Text</option>
+                    }
+                </select>
+            </form>
+
+            <a class="btn btn-sm btn-success d-flex align-items-center gap-1" asp-action="Create">
+                <svg class="icon"><use xlink:href="~/assets/icons/sprites/free.svg#cil-cloud-upload"></use></svg>
+                Yeni Form Ekle
+            </a>
+        </div>
+    </div>
+
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped table-bordered mb-0 text-center align-middle">
+                <thead class="table-light">
+                <tr>
+                    <th class="text-start">Dosya Adı</th>
+                    <th>Açıklama</th>
+                    <th>Kategori</th>
+                    <th>Yüklenme Tarihi</th>
+                    <th>İşlem</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var form in Model)
+                {
+                    <tr>
+                        <td class="text-start">@form.FileName</td>
+                        <td>@form.Description</td>
+                        <td><span class="badge bg-primary">@form.Category</span></td>
+                        <td>@form.UploadedAt.ToString("dd MMM yyyy HH:mm")</td>
+                        <td>
+                            <div class="d-flex justify-content-center gap-2">
+                                <a class="btn btn-sm btn-outline-primary d-flex align-items-center gap-1"
+                                   asp-action="Edit" asp-route-id="@form.Id">
+                                    <svg class="icon"><use xlink:href="~/assets/icons/sprites/free.svg#cil-pencil"></use></svg>
+                                    Güncelle
+                                </a>
+                                <form asp-action="Delete" method="post" asp-route-id="@form.Id"
+                                      onsubmit="return confirm('Bu formu silmek istediğinize emin misiniz?');" class="d-inline">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger d-flex align-items-center gap-1">
+                                        <svg class="icon"><use xlink:href="~/assets/icons/sprites/free.svg#cil-trash"></use></svg>
+                                        Sil
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="5" class="text-center text-muted">Henüz hiç form yüklenmemiş.</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,17 +1,20 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SelcukDemo.Filters;
 using SelcukDemo.Models;
 
 namespace SelcukDemo.Controllers
 {
+    [RequireCompleteProfile]
     [CustomAuthorize("Teacher","Admin")]
     public class TeacherController : Controller
     {
         private readonly AppDbContext.SelcukDbContext _context;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<AppUser> _userManager;
 
-        public TeacherController(AppDbContext.SelcukDbContext context, UserManager<IdentityUser> userManager)
+        public TeacherController(AppDbContext.SelcukDbContext context, UserManager<AppUser
+                > userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -72,6 +75,10 @@ namespace SelcukDemo.Controllers
             return View(); // Burada ilerleyen süreçte öğrenci işlemleri olacak
         }
         public IActionResult MyClasses()
+        {
+            return View(); // Burada ilerleyen süreçte öğrenci işlemleri olacak
+        }
+        public IActionResult HomePageTeachers()
         {
             return View(); // Burada ilerleyen süreçte öğrenci işlemleri olacak
         }

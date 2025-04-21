@@ -1,0 +1,131 @@
+@{
+    ViewBag.Title = "Öğrenci Aktivite İstatistikleri";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-lg px-4">
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h4 class="card-title mb-0">Ders Aktivite İstatistikleri</h4>
+                    <div class="small text-body-secondary">Ocak - Temmuz 2023</div>
+                </div>
+                <div class="btn-toolbar d-none d-md-block">
+                    <div class="btn-group btn-group-toggle mx-3" data-coreui-toggle="buttons">
+                        <input class="btn-check" id="option1" type="radio" name="options" autocomplete="off">
+                        <label class="btn btn-outline-secondary"> Günlük</label>
+                        <input class="btn-check" id="option2" type="radio" name="options" autocomplete="off" checked>
+                        <label class="btn btn-outline-secondary active"> Aylık</label>
+                        <input class="btn-check" id="option3" type="radio" name="options" autocomplete="off">
+                        <label class="btn btn-outline-secondary"> Yıllık</label>
+                    </div>
+                    <button class="btn btn-primary" type="button">
+                        <svg class="icon">
+                            <use xlink:href="@Url.Content("~/assets/icons/sprites/free.svg#cil-cloud-download")"></use>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="c-chart-wrapper mt-4" style="height:300px;">
+                <canvas class="chart" id="main-chart" height="300"></canvas>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-5 g-4 mb-2 text-center">
+                <div class="col">
+                    <div class="text-body-secondary">Sisteme Giriş</div>
+                    <div class="fw-semibold text-truncate">120 Giriş (30%)</div>
+                    <div class="progress progress-thin mt-2">
+                        <div class="progress-bar bg-success" style="width: 30%"></div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="text-body-secondary">Toplam İzleme Süresi</div>
+                    <div class="fw-semibold text-truncate">42 Saat (70%)</div>
+                    <div class="progress progress-thin mt-2">
+                        <div class="progress-bar bg-info" style="width: 70%"></div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="text-body-secondary">Çözülen Testler</div>
+                    <div class="fw-semibold text-truncate">68 Test (60%)</div>
+                    <div class="progress progress-thin mt-2">
+                        <div class="progress-bar bg-warning" style="width: 60%"></div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="text-body-secondary">Yeni Konular</div>
+                    <div class="fw-semibold text-truncate">14 Konu (80%)</div>
+                    <div class="progress progress-thin mt-2">
+                        <div class="progress-bar bg-danger" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="col d-none d-xl-block">
+                    <div class="text-body-secondary">Başarı Oranı</div>
+                    <div class="fw-semibold text-truncate">85%</div>
+                    <div class="progress progress-thin mt-2">
+                        <div class="progress-bar bg-primary" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="@Url.Content("~/assets/js/chart.umd.js")"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('main-chart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz'],
+                    datasets: [
+                        {
+                            label: 'Giriş Sayısı',
+                            backgroundColor: 'rgba(40, 167, 69, 0.2)',
+                            borderColor: 'rgba(40, 167, 69, 1)',
+                            data: [5, 15, 18, 25, 22, 30, 35],
+                            fill: true,
+                        },
+                        {
+                            label: 'İzleme Süresi (Saat)',
+                            backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                            borderColor: 'rgba(0, 123, 255, 1)',
+                            data: [3, 6, 9, 10, 8, 11, 12],
+                            fill: true,
+                        },
+                        {
+                            label: 'Çözülen Testler',
+                            backgroundColor: 'rgba(255, 193, 7, 0.2)',
+                            borderColor: 'rgba(255, 193, 7, 1)',
+                            data: [2, 4, 6, 8, 7, 9, 10],
+                            fill: true,
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: true }
+                    },
+                    scales: {
+                        x: {
+                            grid: { drawOnChartArea: false }
+                        },
+                        y: {
+                            ticks: { beginAtZero: true }
+                        }
+                    },
+                    elements: {
+                        line: { tension: 0.4 }
+                    }
+                }
+            });
+        });
+    </script>
+}

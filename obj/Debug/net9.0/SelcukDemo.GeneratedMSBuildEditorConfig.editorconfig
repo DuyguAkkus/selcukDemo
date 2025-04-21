@@ -28,24 +28,6 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/Areas/Admin/Views/User/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = 
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvVXNlci9DcmVhdGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/Areas/Admin/Views/User/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = 
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvVXNlci9FZGl0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/Areas/Admin/Views/User/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = 
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvVXNlci9JbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-build_metadata.AdditionalFiles.CssScope = 
-
 [/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/Views/Account/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = 
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9BY2Nlc3NEZW5pZWQuY3NodG1s
@@ -100,16 +82,16 @@ build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVhY2hlci9TdHVkZW50cy5jc2h0
 build_metadata.AdditionalFiles.CssScope = 
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/Areas/Admin/Views/Admin/UserList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW4vVXNlckxpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/Areas/Admin/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/Areas/Admin/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/Areas/Admin/Views/User/UserList.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvVXNlci9Vc2VyTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/Areas/Admin/Views/_ViewImports.cshtml]
@@ -126,6 +108,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/Views/Account/Settings.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9TZXR0aW5ncy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/Views/Form/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRm9ybS9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/Views/Form/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRm9ybS9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/Views/Form/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRm9ybS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/Views/Home/Dashboard.cshtml]
@@ -156,12 +150,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/Views/Teacher/MyClasses.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVhY2hlci9NeUNsYXNzZXMuY3NodG1s
+[/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/Views/Student/HomePages.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3R1ZGVudC9Ib21lUGFnZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/Views/User/UserList.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9Vc2VyTGlzdC5jc2h0bWw=
+[/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/Views/Teacher/HomePageTeachers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVhY2hlci9Ib21lUGFnZVRlYWNoZXJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/Views/Teacher/MyClasses.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVhY2hlci9NeUNsYXNzZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/Views/_ViewImports.cshtml]

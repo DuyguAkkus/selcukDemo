@@ -4169,6 +4169,42 @@
       "PackagePath": "staticwebassets/icons/coreui-icons-free.html"
     },
     {
+      "Id": "/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/wwwroot/images/forms/364277af-77d3-409b-8dfc-9e0cc63a385a.png",
+      "PackagePath": "staticwebassets/images/forms/364277af-77d3-409b-8dfc-9e0cc63a385a.png"
+    },
+    {
+      "Id": "/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/wwwroot/images/forms/5dcad6b7-7d4e-4843-9806-434a7fb05ccc.png",
+      "PackagePath": "staticwebassets/images/forms/5dcad6b7-7d4e-4843-9806-434a7fb05ccc.png"
+    },
+    {
+      "Id": "/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/wwwroot/images/forms/b0abf84b-2410-44c3-931a-9bc7b3417d5a.png",
+      "PackagePath": "staticwebassets/images/forms/b0abf84b-2410-44c3-931a-9bc7b3417d5a.png"
+    },
+    {
+      "Id": "/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/wwwroot/images/forms/ed71e51a-b504-4d97-9ef9-bfe1ed9c5bad.png",
+      "PackagePath": "staticwebassets/images/forms/ed71e51a-b504-4d97-9ef9-bfe1ed9c5bad.png"
+    },
+    {
+      "Id": "/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/wwwroot/images/profiles/0c0a062f-6b6d-4a25-b422-e29d6fc5d548.jpg",
+      "PackagePath": "staticwebassets/images/profiles/0c0a062f-6b6d-4a25-b422-e29d6fc5d548.jpg"
+    },
+    {
+      "Id": "/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/wwwroot/images/profiles/3d2df29d-04ff-4050-ab7d-421d21176d5b.jpg",
+      "PackagePath": "staticwebassets/images/profiles/3d2df29d-04ff-4050-ab7d-421d21176d5b.jpg"
+    },
+    {
+      "Id": "/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/wwwroot/images/profiles/871c61f9-8801-4b85-a3bf-f7b8e682e26e.jpg",
+      "PackagePath": "staticwebassets/images/profiles/871c61f9-8801-4b85-a3bf-f7b8e682e26e.jpg"
+    },
+    {
+      "Id": "/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/wwwroot/images/profiles/a004a512-7e35-4121-8efc-ca80686f5a40.jpg",
+      "PackagePath": "staticwebassets/images/profiles/a004a512-7e35-4121-8efc-ca80686f5a40.jpg"
+    },
+    {
+      "Id": "/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/wwwroot/images/profiles/d845b863-6026-41c7-be62-e7abc83dd930.jpg",
+      "PackagePath": "staticwebassets/images/profiles/d845b863-6026-41c7-be62-e7abc83dd930.jpg"
+    },
+    {
       "Id": "/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/wwwroot/js/chart.umd.js",
       "PackagePath": "staticwebassets/js/chart.umd.js"
     },

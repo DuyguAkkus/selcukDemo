@@ -1,8 +1,54 @@
-@model dynamic
+@model SelcukDemo.ViewModels.ProfileSettingsViewModel
 
-@{
-    ViewBag.Title = "title";
-    Layout = "_Layout";
+<div class="container mt-5">
+
+    @{
+        ViewData["Title"] = "Profil Ayarları";
+    }
+
+    @if (!ViewData.ModelState.IsValid || TempData["ShowRequiredMessage"]?.ToString() == "true")
+    {
+        <div class="alert alert-warning">
+            Lütfen aşağıdaki zorunlu alanları doldurunuz. Tüm bilgileri tamamlamadan diğer sayfalara geçemezsiniz.
+        </div>
+    }
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+    <hr/>
+    <form asp-action="Settings" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label asp-for="BirthDate" class="form-label"></label>
+            <input asp-for="BirthDate" type="date" class="form-control"/>
+            <span asp-validation-for="BirthDate" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Gender" class="form-label"></label>
+            <input asp-for="Gender" class="form-control"/>
+            <span asp-validation-for="Gender" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="City" class="form-label"></label>
+            <input asp-for="City" class="form-control"/>
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ProfileImage" class="form-label"></label>
+            <input asp-for="ProfileImage" type="file" class="form-control"/>
+            <span asp-validation-for="ProfileImage" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Güncelle</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }
-
-<h2>Profil AYARLARI</h2>

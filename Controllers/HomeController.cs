@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SelcukDemo.Filters;
 using SelcukDemo.Models;
 
 namespace SelcukDemo.Controllers
@@ -9,14 +10,14 @@ namespace SelcukDemo.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<AppUser> _userManager;
 
-        public HomeController(ILogger<HomeController> logger, UserManager<IdentityUser> userManager)
+        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager)
         {
             _logger = logger;
             _userManager = userManager;
         }
-
+        
         public async Task<IActionResult> Index()
         {
             if (User.Identity!.IsAuthenticated)
@@ -30,11 +31,6 @@ namespace SelcukDemo.Controllers
         public IActionResult Dashboard()
         {
             return View(); // Herkes ayn� Dashboard sayfas�na gidiyor ama men� rollere g�re de�i�iyor!
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

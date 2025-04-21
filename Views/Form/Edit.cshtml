@@ -1,0 +1,60 @@
+@model SelcukDemo.Models.UploadedFile
+@{
+    ViewData["Title"] = "Formu Güncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card mb-4 shadow-sm">
+    <div class="card-header d-flex align-items-center">
+        <svg class="icon me-2">
+            <use xlink:href="@Url.Content("~/assets/icons/sprites/free.svg#cil-pencil")"></use>
+        </svg>
+        <strong>Formu Güncelle</strong>
+    </div>
+    <div class="card-body">
+        <form asp-action="Edit" asp-controller="Form" method="post" enctype="multipart/form-data">
+
+            <!-- GİZLİ ALANLAR -->
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="FilePath" />
+
+            <div class="mb-3">
+                <label asp-for="FileName" class="form-label">Dosya Adı</label>
+                <input asp-for="FileName" class="form-control" />
+                <span asp-validation-for="FileName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label">Açıklama</label>
+                <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Yeni Dosya (isteğe bağlı)</label>
+                <input type="file" name="UploadedFile" class="form-control" />
+                <div class="form-text">Dosya değiştirmek istemiyorsan boş bırak.</div>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Category" class="form-label">Kategori</label>
+                <select asp-for="Category" class="form-select">
+                    <option value="">Kategori seç</option>
+                    <option value="Rapor">Rapor</option>
+                    <option value="Duyuru">Duyuru</option>
+                    <option value="Belge">Belge</option>
+                </select>
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                <svg class="icon me-1"><use xlink:href="~/assets/icons/sprites/free.svg#cil-save"></use></svg>
+                Güncelle
+            </button>
+            <a asp-action="Index" class="btn btn-secondary ms-2">Geri Dön</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SelcukDemo.AppDbContext;
+using SelcukDemo.Models;
 
 namespace SelcukDemo.Services;
 
@@ -12,19 +13,19 @@ namespace SelcukDemo.Services;
 /// </summary>
 public class ClaimsService
 {
-    private readonly UserManager<IdentityUser> _userManager;
+    private readonly UserManager<AppUser> _userManager;
     private readonly SelcukDbContext _context;
     private readonly ILogger<ClaimsService> _logger;
-    private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly SignInManager<AppUser> _signInManager;
 
     /// <summary>
     /// ClaimsService constructor'ı. Kullanıcı yönetimi ve veritabanı işlemleri için bağımlılıkları enjekte eder.
     /// </summary>
     public ClaimsService(
-        UserManager<IdentityUser> userManager,
+        UserManager<AppUser> userManager,
         SelcukDbContext context,
         ILogger<ClaimsService> logger,
-        SignInManager<IdentityUser> signInManager)
+        SignInManager<AppUser> signInManager)
     {
         _userManager = userManager;
         _context = context;
@@ -32,17 +33,13 @@ public class ClaimsService
         _signInManager = signInManager;
     }
 
-    public ClaimsService(UserManager<IdentityUser> userManager, object contextFactory, object logger)
-    {
-        throw new NotImplementedException();
-    }
 
     /// <summary>
     /// Kullanıcının yetkili olduğu menüleri claim olarak getirir.
     /// </summary>
     /// <param name="user">Kimliği alınacak kullanıcı.</param>
     /// <returns>Menü claim'leri içeren bir liste.</returns>
-    public async Task<List<Claim>> GetUserClaims(IdentityUser user)
+    public async Task<List<Claim>> GetUserClaims(AppUser user)
     {
         if (user == null)
         {
@@ -91,7 +88,7 @@ public class ClaimsService
     /// Kullanıcının yetkilerini sıfırlar ve günceller.
     /// </summary>
     /// <param name="user">Yetkileri güncellenecek kullanıcı.</param>
-    public async Task UpdateUserClaims(IdentityUser user)
+    public async Task UpdateUserClaims(AppUser user)
     {
         if (user == null)
         {

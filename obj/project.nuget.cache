@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pwfWIqJ2Og4=",
+  "dgSpecHash": "SBQPzSMzkF4=",
   "success": true,
   "projectFilePath": "/Users/duyguakkus/RiderProjects/SelcukDemo/SelcukDemo/SelcukDemo.csproj",
   "expectedPackageFiles": [
@@ -164,7 +164,8 @@
     "/Users/duyguakkus/.nuget/packages/system.text.json/9.0.2/system.text.json.9.0.2.nupkg.sha512",
     "/Users/duyguakkus/.nuget/packages/system.threading.channels/7.0.0/system.threading.channels.7.0.0.nupkg.sha512",
     "/Users/duyguakkus/.nuget/packages/system.threading.tasks.dataflow/8.0.0/system.threading.tasks.dataflow.8.0.0.nupkg.sha512",
-    "/Users/duyguakkus/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+    "/Users/duyguakkus/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
+    "/Users/duyguakkus/.nuget/packages/ts.result/9.0.1/ts.result.9.0.1.nupkg.sha512"
   ],
   "logs": []
 }

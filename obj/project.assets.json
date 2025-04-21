@@ -2904,6 +2904,15 @@
         "runtime": {
           "lib/netcoreapp2.1/_._": {}
         }
+      },
+      "TS.Result/9.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net9.0/TS.Result.dll": {}
+        },
+        "runtime": {
+          "lib/net9.0/TS.Result.dll": {}
+        }
       }
     }
   },
@@ -7835,6 +7844,20 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "TS.Result/9.0.1": {
+      "sha512": "sf3+wOoNYcSWJyRjjU+gwTa75Ynvue5KmhSNfBAqI0zgk0UIXjunNF+Kowr53I4UTzINl3Kcqcz0zxWwtgK1FA==",
+      "type": "package",
+      "path": "ts.result/9.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.jpg",
+        "lib/net9.0/TS.Result.dll",
+        "ts.result.9.0.1.nupkg.sha512",
+        "ts.result.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -7844,7 +7867,8 @@
       "Microsoft.EntityFrameworkCore.Design >= 9.0.2",
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.2",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.2",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 9.0.0"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 9.0.0",
+      "TS.Result >= 9.0.1"
     ]
   },
   "packageFolders": {
@@ -7917,6 +7941,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[9.0.0, )"
+          },
+          "TS.Result": {
+            "target": "Package",
+            "version": "[9.0.1, )"
           }
         },
         "imports": [

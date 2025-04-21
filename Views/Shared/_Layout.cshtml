@@ -1,6 +1,6 @@
 ﻿@using System.Security.Claims
 @using Microsoft.AspNetCore.Identity
-@inject UserManager<IdentityUser> UserManager
+@inject UserManager<AppUser> UserManager
 @inject IHttpContextAccessor HttpContextAccessor
 
 @{
@@ -77,5 +77,47 @@
 <script src="~/js/main.js"></script>
 
 @await RenderSectionAsync("Scripts", required: false)
+
+<script>
+    const themeToggleButtons = document.querySelectorAll('[data-coreui-theme-value]');
+
+    function applyTheme(value) {
+        const html = document.querySelector('html');
+
+        if (value === 'dark') {
+            html.setAttribute('data-coreui-theme', 'dark');
+        } else if (value === 'light') {
+            html.setAttribute('data-coreui-theme', 'light');
+        } else {
+            html.removeAttribute('data-coreui-theme'); // Auto
+        }
+
+        // Aktif sınıfı güncelle
+        themeToggleButtons.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-coreui-theme-value') === value) {
+                btn.classList.add('active');
+            }
+        });
+
+        // localStorage’a kaydet
+        localStorage.setItem('coreui-theme', value);
+    }
+
+    // Sayfa yüklendiğinde localStorage’daki değeri uygula
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('coreui-theme') || 'auto';
+        applyTheme(savedTheme);
+    });
+
+    // Butonlara tıklama olayını bağla
+    themeToggleButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const value = btn.getAttribute('data-coreui-theme-value');
+            applyTheme(value);
+        });
+    });
+</script>
+
 </body>
 </html>
